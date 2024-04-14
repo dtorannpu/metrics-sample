@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: metrics-sample
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
