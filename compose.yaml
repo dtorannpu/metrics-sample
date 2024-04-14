@@ -6,7 +6,7 @@ services:
       - 'POSTGRES_PASSWORD=secret'
       - 'POSTGRES_USER=myuser'
     ports:
-      - '5432'
+      - '25432:5432'
 
   prometheus:
     image: 'prom/prometheus:v2.51.2'
