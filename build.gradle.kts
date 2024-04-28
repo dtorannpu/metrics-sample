@@ -33,7 +33,7 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-jooq")
-    implementation("org.jooq:jooq:${jooqVersion}")
+    implementation("org.jooq:jooq:$jooqVersion")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
@@ -153,7 +153,7 @@ jooq {
                 packageName = "com.example.bookmanagement.db.jooq.gen"
 
                 // The destination directory of your generated classes
-                //directory = "src/main/kotlin"
+                // directory = "src/main/kotlin"
             }
         }
     }
@@ -163,4 +163,13 @@ flyway {
     url = "jdbc:postgresql://localhost:${env.fetch("POSTGRES_PORT")}/${env.fetch("POSTGRES_DB")}"
     user = env.fetch("POSTGRES_USER")
     password = env.fetch("POSTGRES_PASSWORD")
+}
+
+ktlint {
+    filter {
+        exclude { element ->
+            element.file.path.contains("generated")
+        }
+        include("**/kotlin/**")
+    }
 }
