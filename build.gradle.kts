@@ -135,15 +135,9 @@ jooq {
                 // Generate defaulted nullable Record attributes. Default is true.
                 isKotlinDefaultedNullableRecordAttributes = false
 
-//                // Generate the DAO classes
-//                daos = true
-//
-//                // Annotate DAOs (and other types) with spring annotations, such as @Repository and @Autowired
-//                // for auto-wiring the Configuration instance, e.g. from Spring Boot's jOOQ starter
-//                springAnnotations = true
-//
-//                // Generate Spring-specific DAOs containing @Transactional annotations
-//                springDao = true
+//                isDaos = true
+//                isSpringAnnotations = true
+//                isSpringDao = true
             }
             target {
 
