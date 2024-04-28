@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val jooqVersion: String by project;
+val jooqVersion: String by project
 
 buildscript {
     dependencies {
