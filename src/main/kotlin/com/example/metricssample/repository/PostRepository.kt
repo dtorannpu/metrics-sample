@@ -6,7 +6,11 @@ interface PostRepository {
         body: String,
     ): Int
 
-    fun update()
+    fun update(
+        id: Int,
+        title: String,
+        body: String,
+    ): Int
 
     fun delete(id: Int): Int
 }

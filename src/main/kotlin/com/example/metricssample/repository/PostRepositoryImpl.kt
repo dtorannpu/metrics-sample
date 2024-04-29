@@ -1,6 +1,6 @@
 package com.example.metricssample.repository
 
-import com.example.bookmanagement.db.jooq.gen.tables.references.POSTS
+import com.example.bookmanagement.db.jooq.gen.tables.references.POST
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
 
@@ -10,20 +10,28 @@ class PostRepositoryImpl(private val dslContext: DSLContext) : PostRepository {
         title: String,
         body: String,
     ): Int {
-        val post = dslContext.newRecord(POSTS)
+        val post = dslContext.newRecord(POST)
         post.title = title
         post.body = body
         post.store()
         return post.id!!
     }
 
-    override fun update() {
-        TODO("Not yet implemented")
+    override fun update(
+        id: Int,
+        title: String,
+        body: String,
+    ): Int {
+        return dslContext.update(POST)
+            .set(POST.TITLE, title)
+            .set(POST.BODY, body)
+            .where(POST.ID.eq(id))
+            .execute()
     }
 
     override fun delete(id: Int): Int {
-        return dslContext.delete(POSTS)
-            .where(POSTS.ID.eq(id))
+        return dslContext.delete(POST)
+            .where(POST.ID.eq(id))
             .execute()
     }
 }
