@@ -18,6 +18,7 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
     id("co.uzzu.dotenv.gradle") version "4.0.0"
     id("org.flywaydb.flyway") version "10.11.0"
+    id("org.openapi.generator") version "7.4.0"
 }
 
 group = "com.example"
@@ -39,6 +40,8 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.springframework.boot:spring-boot-testcontainers")
     testImplementation("org.testcontainers:postgresql")
@@ -63,6 +66,7 @@ tasks.withType<KotlinCompile> {
 
 kotlin.sourceSets.main {
     kotlin.srcDir(layout.buildDirectory.dir("generated-sources/jooq"))
+    kotlin.srcDir(layout.buildDirectory.dir("generated-sources/api/src/main/kotlin"))
 }
 
 tasks.withType<Test> {
@@ -152,7 +156,7 @@ jooq {
                 // jOOQ may append the schema name to this package if generating multiple schemas,
                 // e.g. org.jooq.your.packagename.schema1
                 // org.jooq.your.packagename.schema2
-                packageName = "com.example.bookmanagement.db.jooq.gen"
+                packageName = "com.example.metricssample.db.jooq.gen"
 
                 // The destination directory of your generated classes
                 // directory = "src/main/kotlin"
@@ -174,4 +178,20 @@ ktlint {
         }
         include("**/kotlin/**")
     }
+}
+
+openApiGenerate {
+    generatorName.set("kotlin-spring")
+    inputSpec.set("$rootDir/openapi.yaml")
+    outputDir.set(layout.buildDirectory.dir("generated-sources/api").get().toString())
+    apiPackage.set("com.example.metricssample.api")
+    invokerPackage.set("com.example.metricssample.api.invoker")
+    modelPackage.set("com.example.metricssample.api.model")
+    configOptions.set(
+        mapOf(
+            "dateLibrary" to "java8",
+            "useSpringBoot3" to "true",
+            "interfaceOnly" to "true",
+        ),
+    )
 }

@@ -1,6 +1,6 @@
 package com.example.metricssample.repository
 
-import com.example.bookmanagement.db.jooq.gen.tables.references.POST
+import com.example.metricssample.db.jooq.gen.tables.references.POST
 import com.example.metricssample.model.Post
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldContain
@@ -98,11 +98,12 @@ class PostRepositoryImplTest
                 post.title = "タイトル"
                 post.body = "内容"
                 post.store()
+                val id = post.id!!
 
                 val result = postRepository.findAll()
 
                 result shouldHaveSize 1
-                result shouldContain Post("タイトル", "内容")
+                result shouldContain Post(id, "タイトル", "内容")
             }
 
             test("The ability to obtain multiple Post") {
@@ -110,20 +111,23 @@ class PostRepositoryImplTest
                 post1.title = "タイトル1"
                 post1.body = "内容1"
                 post1.store()
+                val id1 = post1.id!!
 
                 val post2 = create.newRecord(POST)
                 post2.title = "タイトル2"
                 post2.body = "内容2"
                 post2.store()
+                val id2 = post2.id!!
 
                 val post3 = create.newRecord(POST)
                 post3.title = "タイトル3"
                 post3.body = "内容3"
                 post3.store()
+                val id3 = post3.id!!
 
                 val result = postRepository.findAll()
 
                 result.shouldHaveSize(3)
-                result shouldContainAll listOf(Post("タイトル1", "内容1"), Post("タイトル2", "内容2"), Post("タイトル3", "内容3"))
+                result shouldContainAll listOf(Post(id1, "タイトル1", "内容1"), Post(id2, "タイトル2", "内容2"), Post(id3, "タイトル3", "内容3"))
             }
         })

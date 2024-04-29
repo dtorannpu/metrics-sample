@@ -1,0 +1,152 @@
+openapi: 3.0.3
+info:
+  title: Title
+  description: Title
+  version: 1.0.0
+  contact:
+    url: 'http://localhost'
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /posts:
+    get:
+      summary: 投稿一覧取得
+      tags:
+        - post
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                minItems: 0
+                items:
+                  $ref: '#/components/schemas/Post'
+      operationId: get-post
+      description: 投稿一覧取得
+    post:
+      summary: 投稿作成
+      operationId: create-post
+      responses:
+        '200':
+          description: OK
+      tags:
+        - post
+      description: 投稿作成
+      requestBody:
+        $ref: '#/components/requestBodies/PostCreateRequest'
+  '/posts/{id}':
+    parameters:
+      - schema:
+          type: integer
+        name: id
+        in: path
+        required: true
+    get:
+      summary: 投稿をIDで取得
+      tags:
+        - post
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '404':
+          description: Not Found
+      operationId: get-post-id
+      description: 投稿をIDで取得
+    delete:
+      summary: 投稿削除
+      operationId: delete-post
+      responses:
+        '200':
+          description: OK
+      tags:
+        - post
+      description: Post削除
+    patch:
+      summary: 投稿更新
+      operationId: update-post
+      responses:
+        '200':
+          description: OK
+          content: {}
+      tags:
+        - post
+      description: 投稿更新
+      requestBody:
+        $ref: '#/components/requestBodies/PostUpdateRequest'
+tags:
+  - name: post
+components:
+  requestBodies:
+    PostCreateRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                x-stoplight:
+                  id: 79q0nzprwdqfn
+                minLength: 1
+                maxLength: 100
+              body:
+                type: string
+                x-stoplight:
+                  id: 89o20yp28zemn
+                minLength: 1
+                maxLength: 5000
+            required:
+              - title
+              - body
+      description: ''
+    PostUpdateRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                x-stoplight:
+                  id: qy4p225xqjyj0
+                minLength: 1
+                maxLength: 100
+              body:
+                type: string
+                x-stoplight:
+                  id: hae46dcnagksi
+                minLength: 1
+                maxLength: 5000
+            required:
+              - title
+              - body
+  schemas:
+    Post:
+      title: Post
+      x-stoplight:
+        id: kflckb7ltmyab
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          x-stoplight:
+            id: vluiixgghnem4
+        body:
+          type: string
+          x-stoplight:
+            id: mm8itk1khxjfh
+      required:
+        - id
+        - title
+        - body
