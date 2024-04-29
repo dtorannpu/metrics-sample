@@ -33,6 +33,14 @@ class PostRepositoryImplTest
             }
 
             test("Delete") {
-                println("test3")
+                val post = create.newRecord(POSTS)
+                post.title = "タイトル"
+                post.body = "内容"
+                post.store()
+                val id = post.id!!
+
+                val result = postRepository.delete(id)
+
+                result shouldBe 1
             }
         })

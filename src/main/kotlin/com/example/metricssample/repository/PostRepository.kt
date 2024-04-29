@@ -8,5 +8,5 @@ interface PostRepository {
 
     fun update()
 
-    fun delete()
+    fun delete(id: Int): Int
 }

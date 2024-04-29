@@ -21,7 +21,9 @@ class PostRepositoryImpl(private val dslContext: DSLContext) : PostRepository {
         TODO("Not yet implemented")
     }
 
-    override fun delete() {
-        TODO("Not yet implemented")
+    override fun delete(id: Int): Int {
+        return dslContext.delete(POSTS)
+            .where(POSTS.ID.eq(id))
+            .execute()
     }
 }
