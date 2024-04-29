@@ -1,6 +1,7 @@
 package com.example.metricssample.repository
 
 import com.example.bookmanagement.db.jooq.gen.tables.references.POST
+import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import org.jooq.DSLContext
@@ -18,7 +19,7 @@ class PostRepositoryImplTest
         private val create: DSLContext,
         private val postRepository: PostRepositoryImpl,
     ) : RepositorySpec({
-            test("Create") {
+            test("Post create") {
                 val result = postRepository.create("タイトル", "内容")
 
                 val post = create.fetchOne(POST, POST.ID.eq(result))
@@ -28,7 +29,7 @@ class PostRepositoryImplTest
                 post.body shouldBe "内容"
             }
 
-            test("Update") {
+            test("Post update") {
                 val post = create.newRecord(POST)
                 post.title = "タイトル"
                 post.body = "内容"
@@ -49,7 +50,7 @@ class PostRepositoryImplTest
                 updatePost.body shouldBe "変更内容"
             }
 
-            test("Delete") {
+            test("Post delete") {
                 val post = create.newRecord(POST)
                 post.title = "タイトル"
                 post.body = "内容"
@@ -59,5 +60,25 @@ class PostRepositoryImplTest
                 val result = postRepository.delete(id)
 
                 result shouldBe 1
+            }
+
+            test("If the post is found by searching by id") {
+                val post = create.newRecord(POST)
+                post.title = "タイトル"
+                post.body = "内容"
+                post.store()
+                val id = post.id!!
+
+                val result = postRepository.findById(id)
+
+                result.shouldNotBeNull()
+                result.title shouldBe "タイトル"
+                result.body shouldBe "内容"
+            }
+
+            test("Search for post by id and null if not found") {
+                val result = postRepository.findById(-1)
+
+                result.shouldBeNull()
             }
         })
