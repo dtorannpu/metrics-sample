@@ -55,6 +55,9 @@ dependencies {
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
     testImplementation("io.kotest.extensions:kotest-extensions-testcontainers:2.0.2")
     testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.3")
+    implementation("io.micrometer:micrometer-tracing-bridge-otel")
+    implementation("io.opentelemetry:opentelemetry-exporter-otlp")
+    implementation("net.ttddyy.observation:datasource-micrometer-spring-boot:1.0.3")
 }
 
 tasks.withType<KotlinCompile> {

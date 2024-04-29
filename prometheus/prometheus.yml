@@ -35,3 +35,6 @@ scrape_configs:
           - "host.docker.internal:8080"
         labels:
           application: "metrics-sample"
+  - job_name: "tempo"
+    static_configs:
+      - targets: [ 'tempo:3200' ]
