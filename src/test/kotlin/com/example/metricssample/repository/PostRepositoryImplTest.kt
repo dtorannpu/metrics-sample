@@ -1,6 +1,11 @@
 package com.example.metricssample.repository
 
 import com.example.bookmanagement.db.jooq.gen.tables.references.POST
+import com.example.metricssample.model.Post
+import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.collections.shouldContain
+import io.kotest.matchers.collections.shouldContainAll
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -80,5 +85,45 @@ class PostRepositoryImplTest
                 val result = postRepository.findById(-1)
 
                 result.shouldBeNull()
+            }
+
+            test("Empty list if no post") {
+                val result = postRepository.findAll()
+
+                result.shouldBeEmpty()
+            }
+
+            test("Post list acquisition") {
+                val post = create.newRecord(POST)
+                post.title = "タイトル"
+                post.body = "内容"
+                post.store()
+
+                val result = postRepository.findAll()
+
+                result shouldHaveSize 1
+                result shouldContain Post("タイトル", "内容")
+            }
+
+            test("The ability to obtain multiple Post") {
+                val post1 = create.newRecord(POST)
+                post1.title = "タイトル1"
+                post1.body = "内容1"
+                post1.store()
+
+                val post2 = create.newRecord(POST)
+                post2.title = "タイトル2"
+                post2.body = "内容2"
+                post2.store()
+
+                val post3 = create.newRecord(POST)
+                post3.title = "タイトル3"
+                post3.body = "内容3"
+                post3.store()
+
+                val result = postRepository.findAll()
+
+                result.shouldHaveSize(3)
+                result shouldContainAll listOf(Post("タイトル1", "内容1"), Post("タイトル2", "内容2"), Post("タイトル3", "内容3"))
             }
         })

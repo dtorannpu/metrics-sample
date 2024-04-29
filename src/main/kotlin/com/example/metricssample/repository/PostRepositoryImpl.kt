@@ -41,4 +41,10 @@ class PostRepositoryImpl(private val dslContext: DSLContext) : PostRepository {
             .where(POST.ID.eq(id))
             .fetchOne()?.let { Post(it.title, it.body) }
     }
+
+    override fun findAll(): List<Post> {
+        return dslContext.selectFrom(POST)
+            .orderBy(POST.ID)
+            .fetch().map { Post(it.title, it.body) }
+    }
 }

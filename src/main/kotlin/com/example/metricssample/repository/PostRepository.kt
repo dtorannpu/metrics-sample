@@ -17,4 +17,6 @@ interface PostRepository {
     fun delete(id: Int): Int
 
     fun findById(id: Int): Post?
+
+    fun findAll(): List<Post>
 }
