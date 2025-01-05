@@ -6,7 +6,9 @@ import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
 import org.testcontainers.containers.PostgreSQLContainer
 
-abstract class RepositorySpec(body: FunSpec.() -> Unit) : FunSpec(body) {
+abstract class RepositorySpec(
+    body: FunSpec.() -> Unit,
+) : FunSpec(body) {
     override fun extensions() = listOf(SpringExtension)
 
     companion object {

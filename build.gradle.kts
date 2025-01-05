@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val jooqVersion: String by project
@@ -5,27 +6,29 @@ val kotestVersion: String by project
 
 buildscript {
     dependencies {
-        classpath("org.flywaydb:flyway-database-postgresql:10.11.0")
+        classpath("org.flywaydb:flyway-database-postgresql:11.1.0")
     }
 }
 
 plugins {
-    id("org.springframework.boot") version "3.2.5"
-    id("io.spring.dependency-management") version "1.1.4"
-    kotlin("jvm") version "1.9.23"
-    kotlin("plugin.spring") version "1.9.23"
+    id("org.springframework.boot") version "3.4.1"
+    id("io.spring.dependency-management") version "1.1.7"
+    kotlin("jvm") version "2.1.0"
+    kotlin("plugin.spring") version "2.1.0"
     id("org.jooq.jooq-codegen-gradle")
-    id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
     id("co.uzzu.dotenv.gradle") version "4.0.0"
-    id("org.flywaydb.flyway") version "10.11.0"
-    id("org.openapi.generator") version "7.4.0"
+    id("org.flywaydb.flyway") version "11.1.0"
+    id("org.openapi.generator") version "7.10.0"
 }
 
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 repositories {
@@ -39,9 +42,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
+    implementation("org.flywaydb:flyway-database-postgresql")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.0")
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.springframework.boot:spring-boot-testcontainers")
     testImplementation("org.testcontainers:postgresql")
@@ -54,16 +58,18 @@ dependencies {
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
     testImplementation("io.kotest.extensions:kotest-extensions-testcontainers:2.0.2")
-    testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.3")
+    testImplementation("io.kotest.extensions:kotest-extensions-spring:1.3.0")
     implementation("io.micrometer:micrometer-tracing-bridge-otel")
     implementation("io.opentelemetry:opentelemetry-exporter-otlp")
-    implementation("net.ttddyy.observation:datasource-micrometer-spring-boot:1.0.3")
+    implementation("net.ttddyy.observation:datasource-micrometer-spring-boot:1.0.6")
+//    implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.8.0"))
+//    implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget = "21"
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_21)
+        freeCompilerArgs.add("-Xjsr305=strict")
     }
 }
 
@@ -186,7 +192,12 @@ ktlint {
 openApiGenerate {
     generatorName.set("kotlin-spring")
     inputSpec.set("$rootDir/openapi.yaml")
-    outputDir.set(layout.buildDirectory.dir("generated-sources/api").get().toString())
+    outputDir.set(
+        layout.buildDirectory
+            .dir("generated-sources/api")
+            .get()
+            .toString(),
+    )
     apiPackage.set("com.example.metricssample.api")
     invokerPackage.set("com.example.metricssample.api.invoker")
     modelPackage.set("com.example.metricssample.api.model")

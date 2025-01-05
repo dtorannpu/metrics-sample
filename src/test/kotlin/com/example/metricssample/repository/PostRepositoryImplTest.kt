@@ -45,7 +45,8 @@ class PostRepositoryImplTest
                 updateCount shouldBe 1
 
                 val updatePost =
-                    create.selectFrom(POST)
+                    create
+                        .selectFrom(POST)
                         .where(POST.ID.eq(id))
                         .fetchOne()
 
