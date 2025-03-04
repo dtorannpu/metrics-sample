@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class PostServiceImpl(private val postRepository: PostRepository) : PostService {
+class PostServiceImpl(
+    private val postRepository: PostRepository,
+) : PostService {
     @Transactional
     override fun create(
         title: String,
@@ -29,11 +31,7 @@ class PostServiceImpl(private val postRepository: PostRepository) : PostService 
         postRepository.delete(id)
     }
 
-    override fun findById(id: Int): Post? {
-        return postRepository.findById(id)
-    }
+    override fun findById(id: Int): Post? = postRepository.findById(id)
 
-    override fun findAll(): List<Post> {
-        return postRepository.findAll()
-    }
+    override fun findAll(): List<Post> = postRepository.findAll()
 }
