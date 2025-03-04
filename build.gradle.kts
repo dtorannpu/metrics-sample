@@ -187,6 +187,7 @@ ktlint {
         }
         include("**/kotlin/**")
     }
+    version.set("1.5.0")
 }
 
 openApiGenerate {

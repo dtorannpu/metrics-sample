@@ -10,7 +10,9 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class PostApiController(private val postService: PostService) : PostsApi {
+class PostApiController(
+    private val postService: PostService,
+) : PostsApi {
     override fun createPost(createPostRequest: CreatePostRequest): ResponseEntity<Unit> {
         postService.create(createPostRequest.title, createPostRequest.body)
         return ResponseEntity.ok().build()
@@ -29,13 +31,10 @@ class PostApiController(private val postService: PostService) : PostsApi {
         return ResponseEntity.ok().build()
     }
 
-    override fun getPostId(id: Int): ResponseEntity<Post> {
-        return postService.findById(id)?.let { ResponseEntity.ok(Post(it.id, it.title, it.body)) } ?: ResponseEntity(
+    override fun getPostId(id: Int): ResponseEntity<Post> =
+        postService.findById(id)?.let { ResponseEntity.ok(Post(it.id, it.title, it.body)) } ?: ResponseEntity(
             HttpStatus.NOT_FOUND,
         )
-    }
 
-    override fun getPost(): ResponseEntity<List<Post>> {
-        return ResponseEntity.ok(postService.findAll().map { Post(it.id, it.title, it.body) })
-    }
+    override fun getPost(): ResponseEntity<List<Post>> = ResponseEntity.ok(postService.findAll().map { Post(it.id, it.title, it.body) })
 }
