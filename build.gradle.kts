@@ -1,7 +1,6 @@
 import org.flywaydb.gradle.task.AbstractFlywayTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jooq.codegen.gradle.CodegenTask
 
 buildscript {
     dependencies {
@@ -184,7 +183,7 @@ ktlint {
         }
         include("**/kotlin/**")
     }
-    version.set("1.5.0")
+    version.set(libs.versions.ktlint)
 }
 
 openApiGenerate {
@@ -211,8 +210,5 @@ openApiGenerate {
 tasks {
     withType<AbstractFlywayTask> {
         notCompatibleWithConfigurationCache("because https://github.com/flyway/flyway/issues/3550")
-    }
-    withType<CodegenTask> {
-        notCompatibleWithConfigurationCache("because https://github.com/jOOQ/jOOQ/issues/16997")
     }
 }
