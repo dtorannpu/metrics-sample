@@ -1,3 +1,4 @@
+import org.flywaydb.gradle.task.AbstractFlywayTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -182,7 +183,7 @@ ktlint {
         }
         include("**/kotlin/**")
     }
-    version.set("1.5.0")
+    version.set(libs.versions.ktlint)
 }
 
 openApiGenerate {
@@ -204,4 +205,10 @@ openApiGenerate {
             "interfaceOnly" to "true",
         ),
     )
+}
+
+tasks {
+    withType<AbstractFlywayTask> {
+        notCompatibleWithConfigurationCache("because https://github.com/flyway/flyway/issues/3550")
+    }
 }

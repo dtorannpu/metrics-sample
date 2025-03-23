@@ -1,0 +1,43 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@3a4f6e1af504cf6a31855fa899c6aa5355ba6c12 # v4.7.0
+        with:
+          distribution: "temurin"
+          java-version: "21"
+          cache: "gradle"
+
+      - name: Start docker container
+        env:
+          TZ: "Asia/Tokyo"
+        run: docker compose -f compose-ci.yaml up -d
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@94baf225fe0a508e581a564467443d0e2379123b # v4.3.0
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: create table on database
+        env:
+          TZ: "Asia/Tokyo"
+        run: ./gradlew flywayMigrate
+
+      - name: execute jOOQ code generator
+        run: ./gradlew jooqCodegen
+
+      - name: execute OpenAPI code generator
+        run: ./gradlew openApiGenerate
+
+      - name: Check
+        run: ./gradlew check
