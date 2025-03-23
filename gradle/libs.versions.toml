@@ -1,9 +1,9 @@
 [versions]
-jooq = "3.19.16"
+jooq = "3.20.2"
 kotest = "5.9.1"
 flyway = "11.4.0"
 kotlin = "2.1.20"
-org-springframework-boot = "3.4.1"
+org-springframework-boot = "3.4.4"
 io-spring-dependency-management = "1.1.7"
 org-jlleitschuh-gradle-ktlint = "12.1.2"
 co-uzzu-dotenv-gradle = "4.0.0"
@@ -13,6 +13,7 @@ org-springdoc-springdoc-openapi-starter-webmvc-ui = "2.8.0"
 io-kotest-extensions-kotest-extensions-spring = "1.3.0"
 net-ttddyy-observation-datasource-micrometer-spring-boot = "1.1.0"
 ktlint = "1.5.0"
+org-postgresql-postgresql = "42.7.5"
 
 [libraries]
 org-jooq-jooq = { group = "org.jooq", name = "jooq", version.ref = "jooq" }
@@ -29,7 +30,7 @@ io-micrometer-micrometer-tracing-bridge-otel = { group = "io.micrometer", name =
 io-opentelemetry-opentelemetry-exporter-otlp = { group = "io.opentelemetry", name = "opentelemetry-exporter-otlp" }
 org-flywaydb-flyway-core = { group = "org.flywaydb", name = "flyway-core" }
 org-jetbrains-kotlin-kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
-org-postgresql-postgresql = { group = "org.postgresql", name = "postgresql" }
+org-postgresql-postgresql = { group = "org.postgresql", name = "postgresql", version.ref = "org-postgresql-postgresql" }
 org-springframework-boot-spring-boot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
 org-springframework-boot-spring-boot-docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose" }
 org-springframework-boot-spring-boot-starter-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
