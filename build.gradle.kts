@@ -1,25 +1,22 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val jooqVersion: String by project
-val kotestVersion: String by project
-
 buildscript {
     dependencies {
-        classpath("org.flywaydb:flyway-database-postgresql:11.1.0")
+        classpath(libs.org.flywaydb.flyway.database.postgresql)
     }
 }
 
 plugins {
-    id("org.springframework.boot") version "3.4.1"
-    id("io.spring.dependency-management") version "1.1.7"
-    kotlin("jvm") version "2.1.0"
-    kotlin("plugin.spring") version "2.1.0"
-    id("org.jooq.jooq-codegen-gradle")
-    id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
-    id("co.uzzu.dotenv.gradle") version "4.0.0"
-    id("org.flywaydb.flyway") version "11.1.0"
-    id("org.openapi.generator") version "7.10.0"
+    alias(libs.plugins.org.springframework.boot)
+    alias(libs.plugins.io.spring.dependency.management)
+    alias(libs.plugins.org.jetbrains.kotlin.jvm)
+    alias(libs.plugins.org.jetbrains.kotlin.plugin.spring)
+    alias(libs.plugins.org.jooq.jooq.codegen.gradle)
+    alias(libs.plugins.org.jlleitschuh.gradle.ktlint)
+    alias(libs.plugins.co.uzzu.dotenv.gradle)
+    alias(libs.plugins.org.flywaydb.flyway)
+    alias(libs.plugins.org.openapi.generator)
 }
 
 group = "com.example"
@@ -36,34 +33,32 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-jooq")
-    implementation("org.jooq:jooq:$jooqVersion")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.flywaydb:flyway-core")
-    implementation("org.flywaydb:flyway-database-postgresql")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.0")
-    testImplementation("org.testcontainers:junit-jupiter")
-    testImplementation("org.springframework.boot:spring-boot-testcontainers")
-    testImplementation("org.testcontainers:postgresql")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    developmentOnly("org.springframework.boot:spring-boot-docker-compose")
-    runtimeOnly("io.micrometer:micrometer-registry-prometheus")
-    runtimeOnly("org.postgresql:postgresql")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    jooqCodegen("org.postgresql:postgresql")
-    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
-    testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
-    testImplementation("io.kotest.extensions:kotest-extensions-testcontainers:2.0.2")
-    testImplementation("io.kotest.extensions:kotest-extensions-spring:1.3.0")
-    implementation("io.micrometer:micrometer-tracing-bridge-otel")
-    implementation("io.opentelemetry:opentelemetry-exporter-otlp")
-    implementation("net.ttddyy.observation:datasource-micrometer-spring-boot:1.0.6")
-//    implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.8.0"))
-//    implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
+    implementation(libs.org.springframework.boot.spring.boot.starter.actuator)
+    implementation(libs.org.springframework.boot.spring.boot.starter.jooq)
+    implementation(libs.org.jooq.jooq)
+    implementation(libs.org.springframework.boot.spring.boot.starter.web)
+    implementation(libs.com.fasterxml.jackson.module.jackson.module.kotlin)
+    implementation(libs.org.flywaydb.flyway.core)
+    implementation(libs.org.flywaydb.flyway.database.postgresql)
+    implementation(libs.org.jetbrains.kotlin.kotlin.reflect)
+    implementation(libs.org.springframework.boot.spring.boot.starter.validation)
+    implementation(libs.org.springdoc.springdoc.openapi.starter.webmvc.ui)
+    testImplementation(libs.org.testcontainers.junit.jupiter)
+    testImplementation(libs.org.springframework.boot.spring.boot.testcontainers)
+    testImplementation(libs.org.testcontainers.postgresql)
+    developmentOnly(libs.org.springframework.boot.spring.boot.devtools)
+    developmentOnly(libs.org.springframework.boot.spring.boot.docker.compose)
+    runtimeOnly(libs.io.micrometer.micrometer.registry.prometheus)
+    runtimeOnly(libs.org.postgresql.postgresql)
+    testImplementation(libs.org.springframework.boot.spring.boot.starter.test)
+    jooqCodegen(libs.org.postgresql.postgresql)
+    testImplementation(libs.io.kotest.kotest.runner.junit5)
+    testImplementation(libs.io.kotest.kotest.assertions.core)
+    testImplementation(libs.io.kotest.extensions.kotest.extensions.testcontainers)
+    testImplementation(libs.io.kotest.extensions.kotest.extensions.spring)
+    implementation(libs.io.micrometer.micrometer.tracing.bridge.otel)
+    implementation(libs.io.opentelemetry.opentelemetry.exporter.otlp)
+    implementation(libs.net.ttddyy.observation.datasource.micrometer.spring.boot)
 }
 
 tasks.withType<KotlinCompile> {

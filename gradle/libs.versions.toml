@@ -1,0 +1,52 @@
+[versions]
+jooq = "3.19.16"
+kotest = "5.8.1"
+flyway = "11.1.0"
+kotlin = "2.1.0"
+org-springframework-boot = "3.4.1"
+io-spring-dependency-management = "1.1.7"
+org-jlleitschuh-gradle-ktlint = "12.1.2"
+co-uzzu-dotenv-gradle = "4.0.0"
+org-openapi-generator = "7.10.0"
+io-kotest-extensions-kotest-extensions-testcontainers = "2.0.2"
+org-springdoc-springdoc-openapi-starter-webmvc-ui = "2.8.0"
+io-kotest-extensions-kotest-extensions-spring = "1.3.0"
+net-ttddyy-observation-datasource-micrometer-spring-boot = "1.0.6"
+
+[libraries]
+org-jooq-jooq = { group = "org.jooq", name = "jooq", version.ref = "jooq" }
+io-kotest-kotest-runner-junit5 = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
+io-kotest-kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
+org-springdoc-springdoc-openapi-starter-webmvc-ui = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "org-springdoc-springdoc-openapi-starter-webmvc-ui" }
+org-flywaydb-flyway-database-postgresql = { group = "org.flywaydb", name = "flyway-database-postgresql", version.ref = "flyway" }
+io-kotest-extensions-kotest-extensions-testcontainers = { group = "io.kotest.extensions", name = "kotest-extensions-testcontainers", version.ref = "io-kotest-extensions-kotest-extensions-testcontainers" }
+io-kotest-extensions-kotest-extensions-spring = { group = "io.kotest.extensions", name = "kotest-extensions-spring", version.ref = "io-kotest-extensions-kotest-extensions-spring" }
+net-ttddyy-observation-datasource-micrometer-spring-boot = { group = "net.ttddyy.observation", name = "datasource-micrometer-spring-boot", version.ref = "net-ttddyy-observation-datasource-micrometer-spring-boot" }
+com-fasterxml-jackson-module-jackson-module-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin" }
+io-micrometer-micrometer-registry-prometheus = { group = "io.micrometer", name = "micrometer-registry-prometheus" }
+io-micrometer-micrometer-tracing-bridge-otel = { group = "io.micrometer", name = "micrometer-tracing-bridge-otel" }
+io-opentelemetry-opentelemetry-exporter-otlp = { group = "io.opentelemetry", name = "opentelemetry-exporter-otlp" }
+org-flywaydb-flyway-core = { group = "org.flywaydb", name = "flyway-core" }
+org-jetbrains-kotlin-kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
+org-postgresql-postgresql = { group = "org.postgresql", name = "postgresql" }
+org-springframework-boot-spring-boot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
+org-springframework-boot-spring-boot-docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose" }
+org-springframework-boot-spring-boot-starter-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
+org-springframework-boot-spring-boot-starter-jooq = { group = "org.springframework.boot", name = "spring-boot-starter-jooq" }
+org-springframework-boot-spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+org-springframework-boot-spring-boot-starter-validation = { group = "org.springframework.boot", name = "spring-boot-starter-validation" }
+org-springframework-boot-spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+org-springframework-boot-spring-boot-testcontainers = { group = "org.springframework.boot", name = "spring-boot-testcontainers" }
+org-testcontainers-junit-jupiter = { group = "org.testcontainers", name = "junit-jupiter" }
+org-testcontainers-postgresql = { group = "org.testcontainers", name = "postgresql" }
+
+[plugins]
+org-jooq-jooq-codegen-gradle = { id = "org.jooq.jooq-codegen-gradle", version.ref = "jooq" }
+org-flywaydb-flyway = { id = "org.flywaydb.flyway", version.ref = "flyway" }
+org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+org-jetbrains-kotlin-plugin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+org-springframework-boot = { id = "org.springframework.boot", version.ref = "org-springframework-boot" }
+io-spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "io-spring-dependency-management" }
+org-jlleitschuh-gradle-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "org-jlleitschuh-gradle-ktlint" }
+co-uzzu-dotenv-gradle = { id = "co.uzzu.dotenv.gradle", version.ref = "co-uzzu-dotenv-gradle" }
+org-openapi-generator = { id = "org.openapi.generator", version.ref = "org-openapi-generator" }
