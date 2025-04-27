@@ -40,3 +40,5 @@ out/
 .kotlin
 
 tempo-data/
+
+.env
