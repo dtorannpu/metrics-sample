@@ -12,7 +12,21 @@ jobs:
       POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
       POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-      POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+      POSTGRES_PORT: 5432
+    services:
+      db:
+        image: postgres:17.4
+        env:
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     strategy:
       matrix:
         distribution: ["temurin"]
@@ -33,11 +47,6 @@ jobs:
           java-version: ${{ matrix.java-version }}
           cache: "gradle"
 
-      - name: Start docker container
-        env:
-          TZ: "Asia/Tokyo"
-        run: docker compose -f compose-ci.yaml up -d
-
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@06832c7b30a0129d7fb559bcc6e43d26f6374244 # v4.3.1
 
@@ -45,8 +54,6 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: create table on database
-        env:
-          TZ: "Asia/Tokyo"
         run: ./gradlew flywayMigrate
 
       - name: execute jOOQ code generator
