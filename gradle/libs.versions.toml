@@ -11,7 +11,7 @@ org-openapi-generator = "7.13.0"
 io-kotest-extensions-kotest-extensions-testcontainers = "2.0.2"
 org-springdoc-springdoc-openapi-starter-webmvc-ui = "2.8.9"
 io-kotest-extensions-kotest-extensions-spring = "1.3.0"
-net-ttddyy-observation-datasource-micrometer-spring-boot = "1.1.1"
+net-ttddyy-observation-datasource-micrometer-spring-boot = "1.1.2"
 ktlint = "1.5.0"
 org-postgresql-postgresql = "42.7.7"
 
