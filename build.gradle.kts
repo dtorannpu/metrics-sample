@@ -219,7 +219,6 @@ tasks {
     }
 }
 
-
 tasks.register<Exec>("tspExists") {
     group = "typespec"
     description = "Checks if TypeSpec is installed"

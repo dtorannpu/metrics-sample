@@ -19,6 +19,26 @@ model Post {
     body: string;
 }
 
+model CreatePostRequest {
+    @minLength(1)
+    @maxLength(100)
+    title: string;
+
+    @minLength(1)
+    @maxLength(5000)
+    body: string;
+}
+
+model UpdatePostRequest {
+    @minLength(1)
+    @maxLength(100)
+    title: string;
+
+    @minLength(1)
+    @maxLength(5000)
+    body: string;
+}
+
 /**
  * 投稿一覧取得
  */
@@ -35,17 +55,7 @@ op `get-post`(): Body<Post[]>;
 @route("/posts")
 @post
 @summary("投稿作成")
-op `create-post`(
-    @body body: {
-        @minLength(1)
-        @maxLength(100)
-        title: string;
-
-        @minLength(1)
-        @maxLength(5000)
-        body: string;
-    },
-): OkResponse;
+op `create-post`(@body body: CreatePostRequest): OkResponse;
 
 /**
  * Post削除
@@ -72,15 +82,4 @@ op `get-post-id`(@path id: integer): Post | NotFoundResponse;
 @route("/posts/{id}")
 @patch(#{ implicitOptionality: false })
 @summary("投稿更新")
-op `update-post`(
-    @path id: integer,
-    @body body: {
-        @minLength(1)
-        @maxLength(100)
-        title: string;
-
-        @minLength(1)
-        @maxLength(5000)
-        body: string;
-    },
-): OkResponse;
+op `update-post`(@path id: integer, @body body: UpdatePostRequest): OkResponse;
