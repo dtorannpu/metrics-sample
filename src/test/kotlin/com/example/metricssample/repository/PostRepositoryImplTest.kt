@@ -2,6 +2,8 @@ package com.example.metricssample.repository
 
 import com.example.metricssample.db.jooq.gen.tables.references.POST
 import com.example.metricssample.model.Post
+import io.kotest.core.extensions.ApplyExtension
+import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldContainAll
@@ -15,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.jooq.JooqTest
 import org.springframework.context.annotation.Import
 import org.springframework.transaction.annotation.Transactional
 
+@ApplyExtension(SpringExtension::class)
 @JooqTest
 @Transactional
 @Import(PostRepositoryImpl::class)
