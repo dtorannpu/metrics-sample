@@ -1,7 +1,6 @@
 package com.example.metricssample.repository
 
 import io.kotest.core.spec.style.FunSpec
-import io.kotest.extensions.spring.SpringExtension
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
 import org.testcontainers.containers.PostgreSQLContainer
@@ -9,8 +8,6 @@ import org.testcontainers.containers.PostgreSQLContainer
 abstract class RepositorySpec(
     body: FunSpec.() -> Unit,
 ) : FunSpec(body) {
-    override fun extensions() = listOf(SpringExtension)
-
     companion object {
         private val db = PostgreSQLContainer("postgres:16.2")
 
