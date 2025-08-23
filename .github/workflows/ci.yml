@@ -15,7 +15,7 @@ jobs:
       POSTGRES_PORT: 5432
     services:
       db:
-        image: postgres:17.4
+        image: postgres:17.6
         env:
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
@@ -52,7 +52,7 @@ jobs:
           JAVA_VERSION: ${{ matrix.java-version }}
         run: echo $JAVA_VERSION
 
-      - name: Set up JDK 21
+      - name: Set up JDK ${{ matrix.distribution }} ${{ matrix.java-version }}
         uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
         with:
           distribution: ${{ matrix.distribution }}
