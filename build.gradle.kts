@@ -223,9 +223,9 @@ tasks.register<Exec>("tspExists") {
     group = "typespec"
     description = "Checks if TypeSpec is installed"
     if (System.getProperty("os.name").lowercase().contains("windows")) {
-        commandLine("cmd.exe", "/d", "/c", "tsp", "--version")
+        commandLine("cmd.exe", "/d", "/c", "npx", "tsp", "--version")
     } else {
-        commandLine("tsp", "--version")
+        commandLine("npx", "tsp", "--version")
     }
     isIgnoreExitValue = true
 
@@ -242,9 +242,9 @@ tasks.register<Exec>("compileTypeSpec") {
     group = "typespec"
     description = "Compiles TypeSpec to OpenAPI"
     if (System.getProperty("os.name").lowercase().contains("windows")) {
-        commandLine("cmd.exe", "/d", "/c", "tsp", "compile", "specs/main.tsp")
+        commandLine("cmd.exe", "/d", "/c", "npx", "tsp", "compile", "specs/main.tsp")
     } else {
-        commandLine("tsp", "compile", "specs/main.tsp")
+        commandLine("npx", "tsp", "compile", "specs/main.tsp")
     }
 
     inputs.files(

@@ -41,9 +41,6 @@ jobs:
           node-version: "24"
           cache: "npm"
 
-      - name: Install TypeSpec compiler
-        run: npm install -g @typespec/compiler
-
       - name: Install Npm packages
         run: npm install
 
