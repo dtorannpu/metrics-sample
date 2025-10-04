@@ -1,7 +1,7 @@
 [versions]
 jooq = "3.20.7"
 kotest = "6.0.3"
-flyway = "11.13.0"
+flyway = "11.13.2"
 kotlin = "2.2.20"
 org-springframework-boot = "3.5.6"
 io-spring-dependency-management = "1.1.7"
@@ -26,7 +26,7 @@ com-fasterxml-jackson-module-jackson-module-kotlin = { group = "com.fasterxml.ja
 io-micrometer-micrometer-registry-prometheus = { group = "io.micrometer", name = "micrometer-registry-prometheus" }
 io-micrometer-micrometer-tracing-bridge-otel = { group = "io.micrometer", name = "micrometer-tracing-bridge-otel" }
 io-opentelemetry-opentelemetry-exporter-otlp = { group = "io.opentelemetry", name = "opentelemetry-exporter-otlp" }
-org-flywaydb-flyway-core = { group = "org.flywaydb", name = "flyway-core" }
+org-flywaydb-flyway-core = { group = "org.flywaydb", name = "flyway-core", version.ref = "flyway" }
 org-jetbrains-kotlin-kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
 org-postgresql-postgresql = { group = "org.postgresql", name = "postgresql", version.ref = "org-postgresql-postgresql" }
 org-springframework-boot-spring-boot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
