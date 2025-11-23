@@ -34,7 +34,7 @@ services:
     volumes:
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
   init:
-    image: &tempoImage grafana/tempo:latest
+    image: busybox:latest
     user: root
     entrypoint:
       - "chown"
@@ -44,7 +44,7 @@ services:
       - ./tempo-data:/var/tempo
 
   tempo:
-    image: *tempoImage
+    image: grafana/tempo:latest
     command: ["-config.file=/etc/tempo.yaml"]
     volumes:
       - ./tempo.yaml:/etc/tempo.yaml
