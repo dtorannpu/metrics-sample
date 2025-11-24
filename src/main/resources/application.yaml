@@ -9,6 +9,13 @@ management:
   tracing:
     sampling:
       probability: 1.0
-  otlp:
+  opentelemetry:
     tracing:
-      transport: grpc
+      export:
+        otlp:
+          endpoint: http://localhost:4317
+          transport: grpc
+  otlp:
+    metrics:
+      export:
+        enabled: false

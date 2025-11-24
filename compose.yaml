@@ -22,7 +22,7 @@ services:
       - ./prometheus/prometheus.yaml:/etc/prometheus.yaml
 
   grafana:
-    image: grafana/grafana:11.0.0
+    image: grafana/grafana:12.3.0
     container_name: grafana
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true
@@ -56,7 +56,7 @@ services:
       - init
 
   k6-tracing:
-    image: ghcr.io/grafana/xk6-client-tracing:v0.0.5
+    image: ghcr.io/grafana/xk6-client-tracing:v0.0.9
     environment:
       - ENDPOINT=otel-collector:4317
     restart: always
@@ -65,9 +65,12 @@ services:
 
   # And put them in an OTEL collector pipeline...
   otel-collector:
-    image: otel/opentelemetry-collector:0.86.0
+    image: otel/opentelemetry-collector-contrib:0.140.0
     command: ["--config=/etc/otel-collector.yaml"]
     volumes:
       - ./otel-collector.yaml:/etc/otel-collector.yaml
     ports:
       - "4317:4317"
+      - "4318:4318"
+    depends_on:
+      - tempo

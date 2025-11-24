@@ -47,6 +47,7 @@ dependencies {
     implementation(libs.org.springframework.boot.spring.boot.starter.validation)
     implementation(libs.org.springdoc.springdoc.openapi.starter.webmvc.ui)
     implementation(libs.org.springframework.boot.spring.boot.starter.flyway)
+    implementation("org.springframework.boot:spring-boot-starter-opentelemetry")
     testImplementation(libs.org.testcontainers.testcontainers.junit.jupiter)
     testImplementation(libs.org.springframework.boot.spring.boot.testcontainers)
     testImplementation(libs.org.testcontainers.testcontainers.postgresql)
@@ -64,8 +65,6 @@ dependencies {
     testImplementation(libs.io.kotest.kotest.extensions.spring)
     testImplementation(libs.org.springframework.boot.spring.boot.starter.flyway.test)
     testImplementation(libs.org.springframework.boot.spring.boot.starter.webmvc.test)
-    implementation(libs.io.micrometer.micrometer.tracing.bridge.otel)
-    implementation(libs.io.opentelemetry.opentelemetry.exporter.otlp)
     implementation(libs.net.ttddyy.observation.datasource.micrometer.spring.boot)
 }
 
