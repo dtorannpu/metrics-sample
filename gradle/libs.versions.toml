@@ -24,8 +24,6 @@ io-kotest-kotest-extensions-spring = { group = "io.kotest", name = "kotest-exten
 net-ttddyy-observation-datasource-micrometer-spring-boot = { group = "net.ttddyy.observation", name = "datasource-micrometer-spring-boot", version.ref = "net-ttddyy-observation-datasource-micrometer-spring-boot" }
 com-fasterxml-jackson-module-jackson-module-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin" }
 io-micrometer-micrometer-registry-prometheus = { group = "io.micrometer", name = "micrometer-registry-prometheus" }
-io-micrometer-micrometer-tracing-bridge-otel = { group = "io.micrometer", name = "micrometer-tracing-bridge-otel" }
-io-opentelemetry-opentelemetry-exporter-otlp = { group = "io.opentelemetry", name = "opentelemetry-exporter-otlp" }
 org-flywaydb-flyway-core = { group = "org.flywaydb", name = "flyway-core", version.ref = "flyway" }
 org-jetbrains-kotlin-kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
 org-postgresql-postgresql = { group = "org.postgresql", name = "postgresql", version.ref = "org-postgresql-postgresql" }
