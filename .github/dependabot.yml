@@ -23,3 +23,7 @@ updates:
       interval: "weekly"
     assignees:
       - "dtorannpu"
+    groups:
+      typespec-libs:
+        patterns:
+          - "@typespec/*"
