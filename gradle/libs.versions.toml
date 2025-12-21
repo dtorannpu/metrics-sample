@@ -2,7 +2,7 @@
 jooq = "3.20.10"
 kotest = "6.0.7"
 flyway = "11.19.1"
-kotlin = "2.2.21"
+kotlin = "2.3.0"
 org-springframework-boot = "4.0.1"
 io-spring-dependency-management = "1.1.7"
 org-jlleitschuh-gradle-ktlint = "14.0.1"
