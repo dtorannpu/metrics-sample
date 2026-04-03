@@ -9,12 +9,16 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 3
     assignees:
       - "dtorannpu"
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 3
     assignees:
       - "dtorannpu"
     groups:
@@ -25,5 +29,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 3
     assignees:
       - "dtorannpu"
