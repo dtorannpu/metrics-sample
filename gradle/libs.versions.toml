@@ -1,6 +1,6 @@
 [versions]
 jooq = "3.21.6"
-kotest = "6.2.1"
+kotest = "6.2.2"
 flyway = "12.11.0"
 kotlin = "2.4.0"
 org-springframework-boot = "4.1.0"
