@@ -1,5 +1,5 @@
 [versions]
-jooq = "3.21.6"
+jooq = "3.21.7"
 kotest = "6.2.3"
 flyway = "13.2.0"
 kotlin = "2.4.10"
