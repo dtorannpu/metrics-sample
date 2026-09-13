@@ -1,7 +1,7 @@
 [versions]
 jooq = "3.21.7"
 kotest = "6.2.4"
-flyway = "13.4.0"
+flyway = "13.5.0"
 kotlin = "2.4.10"
 org-springframework-boot = "4.1.1"
 io-spring-dependency-management = "1.1.7"
