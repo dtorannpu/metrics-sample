@@ -11,7 +11,7 @@ org-openapi-generator = "7.25.0"
 org-springdoc-springdoc-openapi-starter-webmvc-ui = "3.1.1"
 net-ttddyy-observation-datasource-micrometer-spring-boot = "2.3.0"
 ktlint = "1.5.0"
-org-postgresql-postgresql = "42.7.13"
+org-postgresql-postgresql = "42.7.14"
 
 [libraries]
 org-jooq-jooq = { group = "org.jooq", name = "jooq", version.ref = "jooq" }
